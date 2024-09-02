@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTodo } from "../context";
 import { Input } from "./Input";
 import { toast } from "react-hot-toast";
-import cn from "classnames";
+//import cn from "classnames";
 import { motion } from "framer-motion";
 
 export const TodoItem = (props: { todo: Todo }) => {
@@ -56,13 +56,13 @@ export const TodoItem = (props: { todo: Todo }) => {
     <motion.li
       layout
       key={todo.id}
-      className={cn(
-        "p-5 rounded-xl bg-zinc-900",
-        todo.status === "completed" && "bg-opacity-50 text-zinc-500"
-      )}
+      //   className={cn(
+      //     "p-5 rounded-xl bg-zinc-900",
+      //     todo.status === "completed" && "bg-opacity-50 text-zinc-500"
+      //   )}
     >
       {editingTodoId === todo.id ? (
-        <motion.div layout className="flex gap-2">
+        <motion.div layout>
           <Input
             ref={editInputRef}
             type="text"
@@ -70,14 +70,14 @@ export const TodoItem = (props: { todo: Todo }) => {
             onChange={(e) => setEditingTodoText(e.target.value)}
           />
           <button
-            className="px-5 py-2 text-sm font-normal text-orange-300 bg-orange-900 border-2 border-orange-900 active:scale-95 rounded-xl"
+            //className="px-5 py-2 text-sm font-normal text-orange-300 bg-orange-900 border-2 border-orange-900 active:scale-95 rounded-xl"
             onClick={() => handleUpdate(todo.id)}
           >
             Update
           </button>
         </motion.div>
       ) : (
-        <div className="flex flex-col gap-5">
+        <div>
           <motion.span
             layout
             style={{
@@ -87,32 +87,26 @@ export const TodoItem = (props: { todo: Todo }) => {
           >
             {todo.text}
           </motion.span>
-          <div className="flex justify-between gap-5 text-white">
+          <div>
             <button onClick={() => handleStatusUpdate(todo.id)}>
               {todo.status === "undone" ? (
-                <span className="flex items-center gap-1">
+                <span>
                   <i className="bi bi-check2-circle"></i>
                   Mark Completed
                 </span>
               ) : (
-                <span className="flex items-center gap-1">
+                <span>
                   <i className="bi bi-arrow-clockwise"></i>
                   Mark Undone
                 </span>
               )}
             </button>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => handleEdit(todo.id, todo.text)}
-                className="flex items-center gap-1 "
-              >
+            <div>
+              <button onClick={() => handleEdit(todo.id, todo.text)}>
                 <i className="bi bi-pencil-square"></i>
                 Edit
               </button>
-              <button
-                onClick={() => handleDelete(todo.id)}
-                className="flex items-center gap-1 text-red-500"
-              >
+              <button onClick={() => handleDelete(todo.id)}>
                 <i className="bi bi-trash"></i>
                 Delete
               </button>
