@@ -8,7 +8,7 @@ export const TodoList = () => {
   // todo list empty
   if (!todo.length) {
     return (
-      <div>
+      <div className="bg-dark p-3 mb-2 text-white">
         <h1>
           <i className="bi bi-stars"></i>
           Nothing to do

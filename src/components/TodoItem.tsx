@@ -53,14 +53,7 @@ export const TodoItem = (props: { todo: Todo }) => {
   };
 
   return (
-    <motion.li
-      layout
-      key={todo.id}
-      //   className={cn(
-      //     "p-5 rounded-xl bg-zinc-900",
-      //     todo.status === "completed" && "bg-opacity-50 text-zinc-500"
-      //   )}
-    >
+    <motion.li layout key={todo.id}>
       {editingTodoId === todo.id ? (
         <motion.div layout>
           <Input
@@ -70,14 +63,15 @@ export const TodoItem = (props: { todo: Todo }) => {
             onChange={(e) => setEditingTodoText(e.target.value)}
           />
           <button
-            //className="px-5 py-2 text-sm font-normal text-orange-300 bg-orange-900 border-2 border-orange-900 active:scale-95 rounded-xl"
+            className="btn btn-outline-secondary text-light border"
+            type="button"
             onClick={() => handleUpdate(todo.id)}
           >
             Update
           </button>
         </motion.div>
       ) : (
-        <div>
+        <div className="border-top p-4 border-dark-subtle">
           <motion.span
             layout
             style={{
@@ -87,30 +81,33 @@ export const TodoItem = (props: { todo: Todo }) => {
           >
             {todo.text}
           </motion.span>
-          <div>
-            <button onClick={() => handleStatusUpdate(todo.id)}>
+          <div className="btn-group float-end">
+            <button
+              className="btn btn-outline-secondary text-light border "
+              type="button"
+              onClick={() => handleStatusUpdate(todo.id)}
+            >
               {todo.status === "undone" ? (
-                <span>
-                  <i className="bi bi-check2-circle"></i>
-                  Mark Completed
-                </span>
+                <i className="bi bi-check2-circle"></i>
               ) : (
-                <span>
-                  <i className="bi bi-arrow-clockwise"></i>
-                  Mark Undone
-                </span>
+                <i className="bi bi-arrow-clockwise"></i>
               )}
             </button>
-            <div>
-              <button onClick={() => handleEdit(todo.id, todo.text)}>
-                <i className="bi bi-pencil-square"></i>
-                Edit
-              </button>
-              <button onClick={() => handleDelete(todo.id)}>
-                <i className="bi bi-trash"></i>
-                Delete
-              </button>
-            </div>
+
+            <button
+              className="btn btn-outline-secondary text-light border "
+              type="button"
+              onClick={() => handleEdit(todo.id, todo.text)}
+            >
+              <i className="bi bi-pencil-square"></i>
+            </button>
+            <button
+              className="btn btn-outline-secondary text-light border "
+              type="button"
+              onClick={() => handleDelete(todo.id)}
+            >
+              <i className="bi bi-trash"></i>
+            </button>
           </div>
         </div>
       )}

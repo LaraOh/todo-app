@@ -28,17 +28,21 @@ export const AddTodo = () => {
 
   return (
     <form onSubmit={handleSubmission}>
-      <div>
+      <div className="mb-3">
         {/* Input space */}
         <Input
           ref={inputRef}
           value={input}
+          className="form-control border border-rounded"
           onChange={(e) => setInput(e.target.value)}
           type="text"
           placeholder="start typing ..."
         />
         {/* Submit button */}
-        <button type="submit" className="btn btn-primary">
+        <button
+          type="submit"
+          className="btn btn-outline-secondary text-light border "
+        >
           Submit
         </button>
       </div>
